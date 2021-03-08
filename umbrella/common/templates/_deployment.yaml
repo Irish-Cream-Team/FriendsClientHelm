@@ -1,0 +1,43 @@
+{{- define "common.deployment" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "common.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "common.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.global.imagePullSecret }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.images.repository }}:{{ .Values.images.tag }}
+          imagePullPolicy: {{ .Values.images.pullPolicy }}
+          ports:
+          {{ if .Values.rpc.enabled }}
+            - name: rpc
+              containerPort: 7000
+              protocol: TCP
+          {{ end }}
+            - name: http
+              containerPort: {{.Values.service.port}}
+              protocol: TCP
+          envFrom:
+            {{- range .Values.configmaps }}
+            - configMapRef:
+                name: {{ .name }}
+              {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+{{- end -}}

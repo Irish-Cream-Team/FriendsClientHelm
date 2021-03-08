@@ -1,0 +1,23 @@
+{{- define "common.service" -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.fullname" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    {{ if .Values.rpc.enabled }}
+    - port: 7000
+      targetPort: 7000
+      protocol: TCP
+      name: rpc
+    {{ end }}
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "common.selectorLabels" . | nindent 4 }}
+{{- end -}}

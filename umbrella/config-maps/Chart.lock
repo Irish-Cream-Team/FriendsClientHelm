@@ -1,0 +1,15 @@
+dependencies:
+- name: seasons-api
+  repository: file://../seasons-api/
+  version: 0.1.0
+- name: jobs-api
+  repository: file://../jobs-api/
+  version: 0.1.0
+- name: categories-api
+  repository: file://../categories-api/
+  version: 0.1.0
+- name: positions-compositor
+  repository: file://../positions-compositor/
+  version: 0.1.0
+digest: sha256:94d525e4ea15c2fe38e0c4dc3dd1fe89c4a760759c53c1eac05eebe46eb12356
+generated: "2021-01-16T22:55:25.464468465+02:00"

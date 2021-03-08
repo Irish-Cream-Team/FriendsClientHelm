@@ -1,0 +1,31 @@
+configmaps:
+  - name: friends
+    data:
+      SERVER_PORT: '3000'
+      FRIENDS_API_AUDIENCE_ID: OlSPkCn9SsW17R_y5Q4fPuov8mP6nN
+      FRIENDS_BASE_URL: http://13.74.178.234/
+      SERVER_SSL_PRIVATE_KEY: ./src/utils/ssl_certificate/key.pem
+      SERVER_SSL_CERTIFICATE: ./src/utils/ssl_certificate/cert.pem
+      SPIKE_TOKEN_URL: https://51.144.178.121:1337/oauth2/token
+      SPIKE_REDIRECT_TOKEN_URL: https://51.144.178.121:1337/oauth2/authorize
+      SPIKE_FRIENDS_SCOPE: 'read write'
+      SPIKE_REDIRECT_URI: https://13.74.178.234:8443/auth/callback
+      SPIKE_GRANT_TYPE: authorization_code
+      NGINX_PORT: '8443'
+      NODE_TLS_REJECT_UNAUTHORIZED: '0'
+
+
+  - name: auth-service
+    data:
+      SPIKE_CLIENT_ID: StxnQ0vCvXSZU594sd3IsjOGG3oejz1gCDMHtiUc
+      SPIKE_CLIENT_SECRET: MQ9aTAgdTs88hq1VVzW3_66Rsv2hyc57a9O9Pf1DCvs_cjOr2FGDVsDplFd9Ul5acem28npIcZdealx9_8qXbKHw5aFYyRt70wuG
+
+
+  - name: config-service
+    data:
+      API_GATEWAY_URI: http://40.127.168.113:8004/
+      AUTH_SERVICE_URI: http://13.74.178.234:8005/
+
+
+
+

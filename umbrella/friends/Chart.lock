@@ -1,0 +1,24 @@
+dependencies:
+- name: friends-api
+  repository: file://../friends-api/
+  version: 0.1.0
+- name: config-maps
+  repository: file://../config-maps/
+  version: 0.1.0
+- name: group-service
+  repository: file://../group-service/
+  version: 0.1.0
+- name: user-service
+  repository: file://../user-service/
+  version: 0.1.0
+- name: incoming-spike-proxy
+  repository: file://../incoming-spike-proxy/
+  version: 0.1.0
+- name: outgoing-proxy-service
+  repository: file://../outgoing-proxy-service/
+  version: 0.1.0
+- name: common
+  repository: file://../common/
+  version: 0.1.0
+digest: sha256:45fb3cd060247121bb0f4843c3a253e718b61cccb6c821cac0d21bcf2bcb7841
+generated: "2021-03-08T10:10:00.394071414Z"
